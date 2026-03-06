@@ -1,0 +1,339 @@
+{
+    "info": {
+        "_postman_id": "nnptud-day5-collection",
+        "name": "NNPTUD-DAY5",
+        "description": "API Collection cho NNPTUD-DAY5 - User & Role CRUD",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:3000",
+            "type": "string"
+        },
+        {
+            "key": "roleId",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "userId",
+            "value": "",
+            "type": "string"
+        }
+    ],
+    "item": [
+        {
+            "name": "🔰 Role",
+            "item": [
+                {
+                    "name": "GET All Roles",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/roles",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "roles"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "GET Role by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/roles/{{roleId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "roles",
+                                "{{roleId}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "POST Create Role",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "let json = pm.response.json();",
+                                    "if (json._id) pm.collectionVariables.set('roleId', json._id);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"admin\",\n  \"description\": \"Quản trị viên hệ thống\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/roles",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "roles"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "PUT Update Role",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"super-admin\",\n  \"description\": \"Quản trị viên cấp cao\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/roles/{{roleId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "roles",
+                                "{{roleId}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "DELETE Soft Delete Role",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/roles/{{roleId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "roles",
+                                "{{roleId}}"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "👤 User",
+            "item": [
+                {
+                    "name": "GET All Users",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "GET User by ID",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/{{userId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "{{userId}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "POST Create User",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [
+                                    "let json = pm.response.json();",
+                                    "if (json._id) pm.collectionVariables.set('userId', json._id);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"123456\",\n  \"email\": \"john@example.com\",\n  \"fullName\": \"John Doe\",\n  \"roleId\": \"{{roleId}}\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "PUT Update User",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"fullName\": \"John Doe Updated\",\n  \"avatarUrl\": \"https://example.com/avatar.png\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/{{userId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "{{userId}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "DELETE Soft Delete User",
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/{{userId}}",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "{{userId}}"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "POST Enable User (status = true)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\",\n  \"username\": \"johndoe\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/enable",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "enable"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "POST Disable User (status = false)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\",\n  \"username\": \"johndoe\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/api/v1/users/disable",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v1",
+                                "users",
+                                "disable"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
